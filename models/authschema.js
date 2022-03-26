@@ -7,6 +7,7 @@ const authSchema = mongoose.Schema({
     phone_no:{type:String},
     gym_name:{type:String},
     gym_location:{type:String},
+    dayLimit:{type:String},
 })
 
 const authModel = mongoose.model("authData",authSchema);
