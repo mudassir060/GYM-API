@@ -28,15 +28,19 @@ const userGet = async(req,res)=>{
 }
 
 const updateOne = async(req, res)=>{
-        // var checkUser = await userModel.deleteOne({email:req.body.email})
+        // var checkUpdate = await userModel.deleteOne({email:req.body.email})
         var myquery = {_id:req.body._id};
-        var newvalues ={ $set: {email: req.body.email} };
-        console.log(myquery)
-        var checkUser = await userModel.updateOne(myquery, newvalues)
-        if (checkUser.upsertedId) {
-            res.status(200).send({message:'Deleted Successfully'});
+        var newvalues ={ $set: {email: req.body.email, status: req.body.status, } };
+        var checkUpdate = await userModel.updateOne(myquery, newvalues)
+        console.log(checkUpdate.acknowledged)
+        console.log(checkUpdate.matchedCount)
+        console.log(checkUpdate.modifiedCount)
+        console.log(checkUpdate.upsertedCount)
+        console.log(checkUpdate.upsertedId)
+        if (checkUpdate.upsertedCount) {
+            res.status(200).send({message:'Update Successfully'});
         } else {
-            res.status(200).send({message:'Not Found'});
+            res.status(200).send({message:'Updated failed'});
         }
 }
 
