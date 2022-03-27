@@ -42,21 +42,21 @@ const signIn = async (req, res) => {
         // var checkPass = await brcypt.compare(req.body.password,checkUser.password)
         // res.send(checkPass) ///Pass true and false
         if (req.body.password == checkUser.password) {
-            const JoinDate = new Date('Tue Mar 29 2022 21:03:17 GMT+0500 (Pakistan Standard Time)');
+            const JoinDate = new Date(checkUser.joindate);
             const newDate = new Date();
 
             const diffInMs = Math.abs(newDate - JoinDate);
             const totelday = diffInMs / (1000 * 60 * 60 * 24);
             const dayLimit = parseInt(checkUser.dayLimit);
-            console.log(totelday)
+            console.log(checkUser)
             if (totelday <= dayLimit) {
             const remaningday = dayLimit - totelday;
                 res.status(200).send({ result: checkUser, reminingday: remaningday, message: "Your are signin successfully" })
             } else {
-                res.status(400).send({ result: checkUser, message: "You have no more daye" })
+                res.status(400).send({ result: checkUser, message: "You have no more day" })
             }
         } else {
-            res.status(403).send({ result: checkUser, message: "Your Password is incorrect" })
+            res.status(400).send({ result: checkUser, message: "Your Password is incorrect" })
         }
     } else {
         res.status(400).send({ result: checkUser, message: 'NOt User is registered with this Email' });

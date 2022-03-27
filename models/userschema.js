@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     AdmassionDate:{type:String},
     advance:{type:String},
     mobileNo:{type:String},
+    gymId:{type:String},
     status:{},
 })
 
