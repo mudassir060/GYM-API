@@ -25,7 +25,7 @@ const signUp = async (req, res) => {
         })
         userCreate.save()
             .then((responce) => {
-                res.status(200).send({ result: responce, message: "User SignUp Successfully" })
+                res.status(200).send({ result: responce, message: "User Sign Up Successfully" })
                 // console.log(responce, "responce success")
             }).catch((err) => {
                 res.status(400).send({ result: err.message, message: "Data Not Stored Successfully" })
@@ -51,7 +51,7 @@ const signIn = async (req, res) => {
             console.log(checkUser)
             if (totelday <= dayLimit) {
             const remaningday = dayLimit - totelday;
-                res.status(200).send({ result: checkUser, reminingday: remaningday, message: "Your are signin successfully" })
+                res.status(200).send({ result: checkUser, reminingday: remaningday, message: "Your are sign in successfully" })
             } else {
                 res.status(400).send({ result: checkUser, message: "You have no more day" })
             }
@@ -59,7 +59,7 @@ const signIn = async (req, res) => {
             res.status(400).send({ result: checkUser, message: "Your Password is incorrect" })
         }
     } else {
-        res.status(400).send({ result: checkUser, message: 'NOt User is registered with this Email' });
+        res.status(400).send({ result: checkUser, message: 'Not User is registered with this Email' });
     }
 }
 
@@ -69,7 +69,7 @@ const delUser = async (req, res) => {
     if (checkUser.deletedCount == 1) {
         res.status(200).send({ result: checkUser, message: 'Deleted Successfully' });
     } else {
-        res.status(200).send({ result: checkUser, message: 'NOt Found' });
+        res.status(400).send({ result: checkUser, message: 'Account not found' });
     }
 }
 
