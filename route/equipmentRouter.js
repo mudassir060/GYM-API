@@ -3,7 +3,7 @@ const router = express.Router();
 const {equipmentAdd, equipmentGet,updateOne, delequipment} = require('../controller/equipment')
 router.use('/equipmentadd',equipmentAdd)
 // http://localhost:5000/equipment/equipmentAdd
-router.use('/equipmentget',equipmentGet)
+router.use('/equipmentget/:gymId',equipmentGet)
 // http://localhost:5000/equipment/equipmentGet
 router.use('/updateone',updateOne)
 // http://localhost:5000/equipment/updateOne

@@ -20,7 +20,7 @@ const equipmentAdd = async (req, res) => {
 }
 
 const equipmentGet = async (req, res) => {
-    var result = await equipmentModel.find({}).then((responce) => {
+    var result = await equipmentModel.find({ gymId: req.param("gymId") }).then((responce) => {
         res.status(200).send({ message: 'All Data Fetched Successfully', Size: responce.length, data: responce })
     }).catch((err) => {
         res.status(400).send({ message: 'Fetched Failed', error: err })
