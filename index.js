@@ -4,7 +4,7 @@ const core = require('cors')
 const app = express();
 const mongoose = require('mongoose');
 const mainRoute = require('./route/mainRoute')
-const port = 5000;
+const port = process.env.PORT || 8000;
 
 app.use(core());
 app.use(bd.urlencoded({
@@ -37,5 +37,5 @@ app.get('/pk', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log('server is runing....');
+    console.log(`server is runing.... ${port}`);
 })
