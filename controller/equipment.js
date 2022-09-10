@@ -20,11 +20,19 @@ const equipmentAdd = async (req, res) => {
 }
 
 const equipmentGet = async (req, res) => {
-    var result = await equipmentModel.find({ gymId: req.param("gymId") }).then((responce) => {
-        res.status(200).send({ message: 'All Data Fetched Successfully', Size: responce.length, data: responce })
-    }).catch((err) => {
+    var AllTotelPrice = 0;
+    let index
+    var myquery = { gymId: req.param("gymId") };
+    var result = await equipmentModel.find(myquery)
+    if (result) {
+        for (index = 0; index < result.length; index++) {
+            AllTotelPrice= AllTotelPrice + parseInt(result[index].price);
+            console.log(AllTotelPrice); 
+        }
+        res.status(200).send({ message: 'All Data Fetched Successfully', AllTotelPrice: AllTotelPrice, Size: result.length, data: result })
+    } else {
         res.status(400).send({ message: 'Fetched Failed', error: err })
-    })
+    }
 }
 
 const updateOne = async (req, res) => {
@@ -55,7 +63,7 @@ const delequipment = async (req, res) => {
     if (checkequipment.deletedCount == 1) {
         res.status(200).send({ message: 'Deleted Successfully' });
     } else {
-        res.status(400).send({ message: 'Account not found' });
+        res.status(400).send({ message: 'Equipment not found' });
     }
 }
 
