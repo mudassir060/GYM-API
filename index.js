@@ -12,7 +12,7 @@ app.use(bd.urlencoded({
 }))
 app.use(bd.json());
 app.use(mainRoute)
-mongoose.connect('mongodb+srv://admin:090078601@cluster0.akijc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://admin:090078601@cluster0.6x3avrt.mongodb.net/?retryWrites=true&w=majority', {
     // useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
